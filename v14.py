@@ -66,7 +66,7 @@ with tab1:
 bio= st.sidebar.checkbox("**Author Bio**")
 if bio:
     st.sidebar.image('TH.jpg')
-    st.sidebar.write("Trent Henry is a Ph.D student in the Communicative Sciences and Disrders Department at Michigan State University. He recieved his B.A. Psychology from MSU in 2022 His work focuses on Voice Disorders and how Machine Learning can lead to their more accurate diagnosis")
+    st.sidebar.write("Trent Henry is a Ph.D student in the Communicative Sciences and Disrders Department at Michigan State University. He recieved his B.A. Psychology from MSU in 2022. His work focuses on Voice Disorders and how Machine Learning can lead to their more accurate diagnosis")
     st.sidebar.write(" In his free time Trent likes to read comic books, watch movies and listen to the Beatles.")
 
 
