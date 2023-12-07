@@ -119,7 +119,7 @@ with tab2:
     st.caption("**Figure 3:** Distribution of BMI among the dataset")
 
    
-
+#### tab 3
  
 with tab3:
     st.title('Relationship to Insurance Charges')
@@ -153,7 +153,7 @@ with tab3:
 
     st.caption(f"**Figure 4:** Scatter plot showing the relationship between {'BMI' if x_option == 'bmi' else x_option.capitalize()} and charges with color indicating {'BMI' if color_option == 'bmi' else color_option.capitalize()}.")
 
-    # Create grouped features
+    # ######Tab 4
 with tab4:
     st.title("Feature Importantance Analysis")
     st.write("When trying to predict insurance costs, there are several features that need to be considered. We have used two models, a random forest regressor model and a gradient boosting model. This is done to identify if there are certain features that impact insurance charges more than others. ")
@@ -229,7 +229,7 @@ with tab4:
     # Display metrics
     st.write(f'R-squared (Accuracy): {r2:.2f}')
 
-
+#### tab 5
 
 with tab5:
     st.title("Linear Regression and Lasso Analysis")
@@ -278,6 +278,8 @@ with tab5:
     scatter_fig.update_traces(marker=dict(size=8, opacity=0.6), selector=dict(mode='markers'))
     st.plotly_chart(scatter_fig)
     st.caption('**Figure 6:** Linear Regression Plot')
+
+#### tab 6
 with tab6:
     insurance = pd.read_csv("insurance.csv")
     insurance = pd.get_dummies(insurance, columns=['smoker', 'region','sex'], drop_first=True)
@@ -314,6 +316,7 @@ with tab6:
     user_data = [user_age, user_bmi, user_children, user_smoker_encoded, user_sex_encoded, 0, 0, 0]  # For 'None' hue
     predicted_charges = model.predict([user_data])
     st.write(f"# ***Your Predicted Insurance Charges: ${predicted_charges[0]:.2f}***")
+	### tab 7
 with tab7:
     st.title("Conclusions")
     st.write("From the analysis performed, we can see several interesting points.")
