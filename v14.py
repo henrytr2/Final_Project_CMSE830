@@ -40,7 +40,7 @@ with tab1:
     st.write("This application is designed for indivuduals who wish to understand factors that lead to insurance charges. The application investigates possible trends for insurance charges. Towards this goal, several models were trained. ")
     data = pd.read_csv("insurance.csv")
 
-    col1,col2=st.columns(2,gap='small')
+    col3, col1,col2=st.columns(3,gap='small')
     button1 = col1.checkbox("Show Statistics")
     if button1 ==True:
         st.write(data.describe())
@@ -49,22 +49,25 @@ with tab1:
     if button2==True:
         st.table(data.head())
         st.caption("**Table 2:** The First Five Rows of the Insurance Dataset")
-st.sidebar.write("## Dataset Info")
-st.sidebar.write("This dataset contains information about insurance charges across different regions of the United States.")
-st.sidebar.write("Let's explore the data and predict insurance charges based on selected variables.")
-show_column_info = st.sidebar.checkbox("Show Column Info")
-if show_column_info:
-    column_info = {
+    button3 = col3.checkbox('Column Information')
+    if button3 == True:
+        column_info = {
         'age': 'Age of the insured person',
         'sex': 'Gender of the insured person (male or female)',
         'BMI': 'Body Mass Index of the insured person',
         'children': 'Number of children or dependents covered by the insurance',
         'smoker': 'Whether the insured person is a smoker (Yes or No)',
         'region': 'Region in the United States of the insured person'
-    }
-    st.sidebar.write("## Column Information")
-    for col, desc in column_info.items():
-        st.sidebar.write(f"- **{col}**: {desc}")
+        }
+        for col, desc in column_info.items():
+            st.write(f"- **{col}**: {desc}")
+
+
+bio= st.sidebar.checkbox("**Author Bio**")
+if bio:
+    st.sidebar.image('th.jpg')
+    st.sidebar.write("Trent Henry is a Ph.D student in the Communicative Sciences and Disrders Department at Michigan State University. He recieved his B.A. Psychology from MSU in 2022 His work focuses on Voice Disorders and how Machine Learning can lead to their more accurate diagnosis")
+    st.sidebar.write(" In his free time Trent likes to read comic books, watch movies and listen to the Beatles.")
 
 
 ###### End Tab 1 
@@ -113,7 +116,7 @@ with tab2:
     fig3.update_layout(xaxis=dict(showgrid=False,title='BMI'),
             yaxis=dict(showgrid=False,title='Frequency'))
     st.plotly_chart(fig3, use_container_width=True)
-    st.caption("**Figure 2:** Distribution of BMI among the dataset")
+    st.caption("**Figure 3:** Distribution of BMI among the dataset")
 
    
 
@@ -148,7 +151,7 @@ with tab3:
 
     #   bmi = BMI 
 
-    st.caption(f"**Figure 3:** Scatter plot showing the relationship between {'BMI' if x_option == 'bmi' else x_option.capitalize()} and charges with color indicating {'BMI' if color_option == 'bmi' else color_option.capitalize()}.")
+    st.caption(f"**Figure 4:** Scatter plot showing the relationship between {'BMI' if x_option == 'bmi' else x_option.capitalize()} and charges with color indicating {'BMI' if color_option == 'bmi' else color_option.capitalize()}.")
 
     # Create grouped features
 with tab4:
@@ -206,7 +209,7 @@ with tab4:
 
         
         st.plotly_chart(fig)
-        st.caption(f"**Figure 4:** Bar chart  showing the feature important for the {' Forest Regressor' if selected_model== 'Random Forest Regressor' else 'Gradient Boosting Regressor'}")
+        st.caption(f"**Figure 5:** Bar chart  showing the feature important for the {' Forest Regressor' if selected_model== 'Random Forest Regressor' else 'Gradient Boosting Regressor'}")
 
         
 
@@ -229,7 +232,7 @@ with tab4:
 
 
 with tab5:
-    st.title("Linear Regression Analysis")
+    st.title("Linear Regression and Lasso Analysis")
     st.write("After determing the features that contrbute the most to the insurance charges, perform linear regression in an effort to predict insurance charges for an indivual. After selection of the model, r-squared values are shown. ")
     data = pd.read_csv("insurance.csv")
     # Feature engineering
@@ -274,6 +277,7 @@ with tab5:
     scatter_fig = px.scatter(data, x=y_test, y=y_pred, trendline='ols', labels={'x': 'Actual Charges', 'y': 'Predicted Charges'})
     scatter_fig.update_traces(marker=dict(size=8, opacity=0.6), selector=dict(mode='markers'))
     st.plotly_chart(scatter_fig)
+    st.caption('**Figure 6:** Linear Regression Plot')
 with tab6:
     insurance = pd.read_csv("insurance.csv")
     insurance = pd.get_dummies(insurance, columns=['smoker', 'region','sex'], drop_first=True)
@@ -313,7 +317,10 @@ with tab6:
 with tab7:
     st.title("Conclusions")
     st.write("From the analysis performed, we can see several interesting points.")
-    st.write("When we first looked at the EDA and data distributions, we saw that perhaps whether or not someone was a smoker played a significant role in the insurance charges. To validate this claim, we performed feature analysis using  Grandient Regressor and Random Forest models. In both cases the model indicated that smoking does play a significant role in insurance charges.")
-    st.write("After feature analysis, we then created a linear model with .77 r-squared that user may implement to understand factors for their insurance charges")
+    st.write("When we first looked at the EDA and data distributions, we saw that perhaps whether or not someone was a smoker played a significant role in the insurance charges. To validate this claim, we performed feature analysis using  Grandient Regressor (.87 r-squared) and Random Forest (.84 r-squared) models. In both cases the model indicated that smoking does play a significant role in insurance charges.")
+    st.write("After feature analysis, we then created a linear model with .77 r-squared that user may implement to understand factors for their insurance charges.")
+
+    st.title("Further Work")
+    st.write("Although this datset provides information regarding insurance charges, several key factors are left out. These include things such as race, SES, or martial status. Future work could be performed with these variables included in the dataset. This would provide a more robust model. ")
 
 
