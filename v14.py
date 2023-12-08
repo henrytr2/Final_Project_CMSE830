@@ -8,7 +8,7 @@ import plotly.express as px
 
 ### setting up 
 st.set_option('deprecation.showPyplotGlobalUse', False)
-st.set_page_config(layout="wide")
+st.set_page_config(layout="centered")
 
 streamlit_style = """
 			<style>
@@ -21,10 +21,8 @@ streamlit_style = """
 			"""
 
 st.markdown(streamlit_style, unsafe_allow_html=True)
-colj = st.columns(3,gap='small')
-with colj[1]:
 
-    st.image('hi.jpg')
+st.image('hi.jpg')
 cols=st.columns(3,gap='large')
 with cols[0].expander("CNN:"):
     st.video("https://www.youtube.com/watch?v=wO-DAdZX59w",start_time=0)
@@ -32,7 +30,7 @@ with cols[1].expander("Consumer Reports:"):
     st.video("https://www.youtube.com/watch?v=DBTmNm8D-84",start_time=0)
 with cols[2].expander("WSJ:"):
     st.video("https://www.youtube.com/watch?v=t7RiQbjlOfQ",start_time=0)
-tab1, tab2 , tab3 , tab4, tab5, tab6, tab7= st.tabs(['Insurance Dataset', 'Data Distributions', "Relationship to Charges","Feature Analysis", "Linear and Lasso","Prediction","Conclusions"])
+tab1, tab2 , tab3 , tab4, tab5, tab6, tab7= st.tabs(['Insurance Dataset', 'Distributions', "Relationship to Charges","Feature Analysis", "Linear Analysis","Prediction","Conclusions"])
 ### Tab 1, introduction
 with tab1:
     st.title("Introduction")
@@ -69,7 +67,7 @@ with tab1:
 bio= st.sidebar.checkbox("**Author Bio**")
 if bio:
     st.sidebar.image('TH.jpg')
-    st.sidebar.write("Trent Henry is a Ph.D student in the Communicative Sciences and Disrders Department at Michigan State University. He recieved his B.A. Psychology from MSU in 2022 His work focuses on Voice Disorders and how Machine Learning can lead to their more accurate diagnosis")
+    st.sidebar.write("Trent Henry is a Ph.D student in the Communicative Sciences and Disrders Department at Michigan State University. He recieved his B.A. Psychology from MSU in 2022. His work focuses on Voice Disorders and how Machine Learning can lead to their more accurate diagnosis")
     st.sidebar.write(" In his free time Trent likes to read comic books, watch movies, and listen to the Beatles.")
 
 
